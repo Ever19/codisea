@@ -59,9 +59,31 @@ app.get("/obtener-session-codigo",function(req,res){
     });
 }); 
 
+//-----------Obtener los usuarios para perfil----------
+app.get("/obtener-session-codigo-perfil",function(req,res){
+    usuario.find({_id:req.session.codigoUsuario}).then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+}); 
+
 
 //------------Obtener USUARIO ACTIVA------------
 app.get("/obtener-session-codigo/:id",function(req,res){
+    usuario.find({_id:req.params.id})
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+
+//------------Obtener USUARIO ACTIVA para perfil------------
+app.get("/obtener-session-codigo-perfil/:id",function(req,res){
     usuario.find({_id:req.params.id})
     .then(data=>{
         res.send(data);
@@ -123,33 +145,29 @@ app.put("/obtener-session-codigo/:id", function(req, res){
 });
 
 
-
-/* app.get("/carpetas/:id/archivos",function(req,res){
-    carpeta.aggregate([
-        {
-            $lookup:{
-                from:"carpetas",
-                localField:"archivos", 
-                foreignField:"_id",
-                as:"archivos"
-            }
-        },
-        {
-            $match:{
-                _id:mongoose.Types.ObjectId(req.params._id)
-            }
-        },
-        
-    ])
-    .then(data=>{
-        res.send(data);
+//--------------Actualizar del perfil de Usuario ACTIVA-----------
+app.put("/obtener-session-codigo-perfil/:id", function(req, res){
+    usuario.update(
+        {_id:req.params.id},
+        {              
+             $set:{                     
+                
+                nombre:req.body.nombre,
+                apellido:req.body.apellido,
+                usuario:req.body.usuario,
+                contrasena:req.body.contrasena,
+                correo:req.body.correo
+                //tipoUsuario:req.body.tipoUsuario,
+               
+                
+                }}).then(result=>{
+        res.send(result);
     })
     .catch(error=>{
         res.send(error);
     });
 });
- */
- 
+
     
 
 //-----------peticion restringida, se envia una funcion midleware-----------
@@ -158,7 +176,7 @@ app.get("/peticion-registringido",verificarAutenticacion,function(req, res){
     res.end();
 });
 
-//-------------Para agregar seguridad a una ruta especifica
+//-------------Para agregar seguridad a una ruta especifica-----------------
 function verificarAutenticacion(req, res, next){
 	if(req.session.correoUsuario)
 		return next();

@@ -43,7 +43,11 @@ $.ajax({
 			`<input class="form-control" type="hidden" placeholder="Usuario" value="${respuesta[0]._id}" id="valor-usuario">`
         ); 
         console.log("Usuario seleccionado: " + $("#valor-usuario").val());
+
+
         obtenerCarpeta(respuesta);  
+        
+       
 		},
 	error:function(error){
 		console.error(error);
@@ -68,25 +72,3 @@ $.ajax({
 });
 });
 
-
-
-
-
-/* //----------Funcion para eliminar carpeta del usuario-----------------
-function eliminarcarpeta(e,id){
-    e.preventDefault();
-    console.log('Codigo eliminado: ' + id );
-    $.ajax({
-        url:"/obtener-session-codigo/"+id,
-        method:"delete",
-        dataType:"json",
-        success:function(res){
-            console.log(res);
-            if (res.n==1 && res.ok == 1)
-                $("#"+id).remove();
-        },
-        error:function(error){
-            console.log(error);
-        }
-    });
-}  */

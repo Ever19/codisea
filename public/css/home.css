@@ -71,18 +71,7 @@ body {
   padding-bottom: 7rem;
 }
 
-/*Boton de Nabvar*/
 
-/* #formulario-login #btn_nabvar {
-  background: #0A91A1;
-  border-radius: 25px;
-  border: none;
-  color: #FFF;
-  font-family: OpenSans_SemiBold;
-  padding: 5px 30px;
-  width: 100%;
-  transition: 0.3s ease all;
-} */
 #formulario-nabvar #btn_nabvar:hover {
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0A91A1;
 }
@@ -201,5 +190,3 @@ body {
     display: none;
   }
 }
-
-/*# sourceMappingURL=login.css.map */

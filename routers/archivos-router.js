@@ -4,7 +4,7 @@ var archivo = require("../models/archivo");
 var mongoose = require("mongoose");
 
 
-//Obtener el listado de todas las peliculas
+//------------Obtener los listado de todos Archivos---------------
 router.get("/",function(req,res){
     archivo.find()
     .then(data=>{
@@ -15,7 +15,7 @@ router.get("/",function(req,res){
     });
 });
 
-//Obtener una pelicula en particular
+//-----------------Obtener un archivo en particular-----------------
 router.get("/:id",function(req,res){
     archivo.find({_id:req.params.id})
     .then(data=>{
@@ -26,7 +26,7 @@ router.get("/:id",function(req,res){
     });
 });
 
-//Peticion para guardar un archivo
+//--------------Peticion para guardar un archivo----------------
 router.post("/", function(req, res){
     var p = new archivo({
             nombre: req.body.nombre,
@@ -56,7 +56,7 @@ router.post("/", function(req, res){
 
 });
 
-//Peticion para actualizar un registro
+//----------------Peticion para actualizar un registro de archivo---------------
 router.put("/:id",function(req,res){
     archivo.update(
         {_id:req.params.id},
@@ -71,11 +71,11 @@ router.put("/:id",function(req,res){
     })
     .catch(error=>{
         res.send(error);
-    });//El primero son los filtros, el segundo son los campos
+    });
 });
 
 
-//Peticion para eliminar un registro
+//---------------Peticion para eliminar un registro de archivo------------
 router.delete("/:id",function(req, res){
     archivo.remove({_id:req.params.id})
     .then(data=>{

@@ -28,22 +28,49 @@
             <div class="col-md-4 text-center mt-3">
                <h1 id="inicia-sesion">Perfil</h1>
                 <form action="" class="mt-5" id="form-perfil">
-                    <input type="text" class="form-control mt-3" name="nombre" id="nombre" placeholder="Nombre">
-                    <input type="text" class="form-control mt-3" name="apellido" id="apellido" placeholder="Apellido">
-                    <input type="text" class="form-control mt-3" name="usuario" id="usuario" placeholder="Usuario">
-                    <input type="text" class="form-control mt-3" name="correo" id="correo" placeholder="Correo electrónico">
-                    <input type="password" class="form-control mt-3" name="contrasena" id="contrasena" placeholder="Contraseña">
-                    <a href="#"><input type="button" class="form-control mt-3" value="Editar Perfil" id="btn_editar"></a>
-                    <a href="#"><input type="button" class="form-control mt-3" value="Actualizar Cambios" id="btn_actualizar"></a>
-                </form> <p>
+                    <div id="formularioperfil"></div>
+              
+        
+                    <button type="button" class="form-control mt-3" id="btn_editar" data-toggle="modal"  data-target="#modalAgregarPerfil">Editar Perfil</button>
+<!--                     <button type="button" class="form-control mt-3" id="btn_actualizar">Actualizar Cambios</button>
+ -->                </form> <p>
                     <a class="carrruseltext" href="home.html" style="padding-left: 20em;">Regresar</a>
                 </p>
             </div>
         </div>
     </div>
+
+     <!-- Modal Para editar perfil-->
+     <div class="modal fade" id="modalAgregarPerfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalAgregarPerfilLabel">Editar Perfil</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="formularioperfilmodal">
+                        <input type="text" class="form-control mt-3" value="" name="nombre" id="nombre" placeholder="Nombre">
+                        <input type="text" class="form-control mt-3" value="" name="apellido" id="apellido" placeholder="Apellido">
+                        <input type="text" class="form-control mt-3" value="" name="usuario" id="usuario" placeholder="Usuario">
+                        <input type="text" class="form-control mt-3" value="" name="correo" id="correo" placeholder="Correo electrónico">
+                        <input type="password" class="form-control mt-3" value="" name="contrasena" id="contrasena" placeholder="Contraseña">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-success" id="btn_actualizar">Actualizar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    <div id="prueba5"></div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/controlador.js"></script>
+    <script src="js/controlador-editarPerfil.js"></script>
+    <script src="js/controlador-carpeta.js"></script>
 </body>
 </html>
                   

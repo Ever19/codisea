@@ -196,3 +196,9 @@ function eliminarcarpeta(e,id){
         }
     });
 } 
+
+
+
+
+
+
