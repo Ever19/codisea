@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+   
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/logo2.png">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="css/home.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script defer src="js/all.min.js"></script>
+    <title>home</title>
+    
+
+
+</head>
+<body>
+
+    <!--Empieza navbar-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+      
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <form class="my-2 my-lg-0" id="formulario-nabvar">
+
+                    <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="cargarcarpeta">Cargar Carpeta</button>
+                      
+                    <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="cargararchivo">Cargar Archivo</button>
+                  
+                   <!--  <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
+                    id="btn_nabvar">Compartir</button>
+
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
+                    id="btn_nabvar" data-toggle="modal"  data-target="#modalAgregarCarpeta">Crear Carpeta</button>
+                     -->
+                  
+                    <a href="editarPerfil.html"> <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
+                      id="btn_nabvar">Perfil</button></a>
+                                          
+
+                    <a href="/logout"><button class="btn btn-danger my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
+                    id="btn_nabvar" >Salir Sesión</button> </a>
+                                        
+                </form>
+                
+            
+            </div>
+    </nav>
+        <!--Terminar navbar-->
+
+
+        <!-- Empieza al fondo de carpetas y archivos -->
+        <div class="container-fluid" style="background-color:rgb(255, 255, 255); margin-top: 50px">
+            <div class="row">
+              <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <br><br>
+                    </li>
+                    
+                    <br>
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">
+                          <span><i class="far fa-address-card"></i></span>
+                          Inicio
+                        </a>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal"  data-target="#modalAgregarCarpeta">
+                          <span><i class="far fa-folder"></i></span>
+                          Nueva Carpeta
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal"  data-target="#modalAgregarArchivo">
+                          <span ><i class="far fa-file-alt"></i></span>
+                          Nuevo Archivo
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./editor.html">
+                          <span><i class="far fa-file-code"></i></span>
+                          Nuevo Proyecto
+                        </a>
+                      </li>
+                    
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" data-toggle="modal"  data-target="#modalAgregarCompartir">
+                        <span><i class="fas fa-user-friends" ></i></span>
+                        Compartir
+                      </a>
+                    </li>
+                   
+                  <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <div style="margin-left: 15px" class="form-group">
+                            <input class="btn btn-success" type="button" onclick="location.href='#'" value="Suscribete a un plan">
+                         </div>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+              
+              <main style="margin-top:50px" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <h3>Carpetas</h3><br>
+                    <div class="container">
+                        <div class="col-12 row" style=" color:rgb(212, 188, 77)" id="carpetas"  >
+                    </div>
+                    <br><br>
+                <h3>Archivos</h3><br>
+                <div class="container">
+                    <div class="col-12 row" id="archivos">
+                       
+                       
+                    </div>
+                </div>
+                <div id="prueba"></div>
+                <div id="prueba2"></div>
+                <div id="prueba3"></div>
+                <div id="prueba4"></div>
+                  
+                <!-- <div class="row" id="categorias"></div> -->
+                <br><br>
+               
+              </main>
+            </div>
+        </div>
+
+     <!-- Footer -->
+  <footer id="footer-codigo-editor" class="bg-black small text-center text-white-50">
+        <div class="container" style="color:black;">
+          Copyright &copy; 2019 CodiSeña.
+        </div>
+  </footer>
+
+     <!-- Modal Agregar carpeta-->
+     <div class="modal fade" id="modalAgregarCarpeta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalAgregarCarpetaLabel">Crear nueva carpeta</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="formulariocarpeta">
+              Nombre de Carpeta: <input type="text" class="form-control" name="nombre" id="nombre">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-success" id="btn-guardar-carpeta">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <!-- Modal Agregar archivo-->
+        <div class="modal fade" id="modalAgregarArchivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalAgregarArchivoLabel">Crear nuevo archivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="formularioarchivo">
+                  Nombre de Archivo: <input type="text" class="form-control" name="nombre" id="nombre">
+                  Tipo Archivo: <select name="categoria" id="categoria" class="form-control"></select>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" id="btn-guardar-archivo">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+          <!-- Modal Compartir carpeta al usuario-->
+          <div class="modal fade" id="modalAgregarCompartir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalAgregarCompartirLabel">Compartir</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="formulariocompartir">
+                    <h6>Carpeta</h6>
+                    <select  class="custom-select" name="carpe" id="carpe">
+<!--                       <option selected >Seleccionar carpeta</option> 
+ -->                    </select>
+                    <h6>Usuario</h6>
+                    <select  class="custom-select" name="usuario" id="usuario">
+                      <!-- <option selected >Seleccionar Usuario</option>  -->
+                    </select>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-success" id="btn-guardar-compartir">Compartir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+   
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/controlador-carpeta.js"></script>
+    <script src="js/controlador-archivo.js"></script>
+    <script src="js/controlador-usuario.js"></script>
+    <script src="js/controlador-compartir.js"></script>
+</body>
+</html>

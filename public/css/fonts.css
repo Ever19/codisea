@@ -1,0 +1,19 @@
+@font-face {
+	font-family: "OpenSans_Regular";
+	src: url("../fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "OpenSans_Light";
+	src: url("../fonts/Open_Sans/OpenSans-Light.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "OpenSans_SemiBold";
+	src: url("../fonts/Open_Sans/OpenSans-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Roboto_Regular";
+	src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
