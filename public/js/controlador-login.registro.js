@@ -33,6 +33,7 @@ $("#btn_registrar").click(function(){
         dataType: "json",
         success:function(res3){
             console.log(res3);
+            window.location.href = "/sesion.html";
                       
         },
         error:function(error){

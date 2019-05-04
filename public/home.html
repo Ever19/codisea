@@ -30,19 +30,20 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <form class="my-2 my-lg-0" id="formulario-nabvar">
 
-                    <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="cargarcarpeta">Cargar Carpeta</button>
+<!--                     <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="cargarcarpeta">Cargar Carpeta</button>
                       
                     <button type="button" class="btn btn-outline-primary my-2 my-sm-0" id="cargararchivo">Cargar Archivo</button>
-                  
+                   -->
                    <!--  <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
                     id="btn_nabvar">Compartir</button>
 
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
                     id="btn_nabvar" data-toggle="modal"  data-target="#modalAgregarCarpeta">Crear Carpeta</button>
                      -->
-                  
-                    <a href="editarPerfil.html"> <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
-                      id="btn_editarperfil">Perfil</button></a>
+                     
+                    <div id="botonperfil"></div>
+                    <!-- <a href="editarPerfil.html"> <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
+                      id="btn_editarperfil">Perfil</button></a> -->
                                           
 
                     <a href="/logout"><button class="btn btn-danger my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
@@ -126,6 +127,7 @@
                 <div id="prueba2"></div>
                 <div id="prueba3"></div>
                 <div id="prueba4"></div>
+                <div id="prueba6"></div>
                 
                   
                 <!-- <div class="row" id="categorias"></div> -->
@@ -164,6 +166,30 @@
         </div>
       </div>
     </div>
+
+
+     <!-- Modal Editar carpeta-->
+     <div class="modal fade" id="modalEditarCarpeta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalEditarCarpetaLabel">Editar Carpeta</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="formularioeditarcarpeta">
+                Nombre de Carpeta: <input type="text" class="form-control" name="nombre" id="nombre">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-success" id="btn-editar-carpeta">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
         <!-- Modal Agregar archivo-->
         <div class="modal fade" id="modalAgregarArchivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

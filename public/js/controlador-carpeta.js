@@ -7,7 +7,7 @@ function obtenerCarpetas(informacion){
         document.getElementById('carpetas').innerHTML += 
                 `<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3" id="${informacion[i]._id}" >
                     <div>
-                    <span style=" color:rgb(212, 188, 77)"><a href="#" onclick="seleccionarCarpeta('${informacion[i]._id}');"><i class="fas fa-folder fa-5x" style=" color:rgb(212, 188, 77)"></i></a><br><span style="color:black">${informacion[i].nombre}</span><br><span><i class="fas fa-pencil-alt" style="color:Gray"></i></span>&nbsp|&nbsp<span><a href="" onclick="eliminarcarpeta(event, '${informacion[i]._id}')"><i class="fas fa-trash-alt" style=" color:red"></i></a></span> </span> 
+                    <span style=" color:rgb(212, 188, 77)"><a href="#" onclick="seleccionarCarpeta('${informacion[i]._id}');"><i class="fas fa-folder fa-5x" style=" color:rgb(212, 188, 77)"></i></a><br><span style="color:black">${informacion[i].nombre}</span><br><span><a href="#" onclick="editarcarpeta('${informacion[i]._id}')" data-toggle="modal"  data-target="#modalEditarCarpeta"><i class="fas fa-pencil-alt" style="color:Gray"></i></a></span>&nbsp|&nbsp<span><a href="" onclick="eliminarcarpeta(event, '${informacion[i]._id}')"><i class="fas fa-trash-alt" style=" color:red"></i></a></span> </span> 
                     </div>
                  </div>`;
     }
@@ -137,6 +137,7 @@ $("#btn-guardar-carpeta").click(function (){
             );
            
             $("#modalAgregarCarpeta").modal("hide");
+            cargarcarpetacarpeta();
 
             },
         
@@ -151,8 +152,9 @@ $("#btn-guardar-carpeta").click(function (){
 
 
 
+
 //------------------Para cargar carpeta nueva-------------------
-$("#cargarcarpeta").click(function (){
+function cargarcarpetacarpeta(){
     var parametros2 = "carpe="+$("#valor-carpeta").val();
     console.log(parametros2);
     $.ajax({
@@ -172,7 +174,7 @@ $("#cargarcarpeta").click(function (){
         }
     });location.reload();
      
-});
+};
 
 
 
@@ -196,9 +198,4 @@ function eliminarcarpeta(e,id){
         }
     });
 } 
-
-
-
-
-
 

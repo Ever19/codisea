@@ -5,7 +5,7 @@ function generarItemsarchivos(informacionarchivos){
             document.getElementById(informacionarchivos[i].categoria._id).innerHTML += 
                 `<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3" id="${informacionarchivos[i]._id}">
                     <div>
-                    <span style=" color:rgb(212, 188, 77)"><i class="fab fa-css3-alt fa-5x" style="color:cornflowerblue"></i><br><span style="color:black">${informacionarchivos[i].nombre}</span><br><span><i class="fas fa-pencil-alt" style="color:Gray"></i></span>&nbsp|&nbsp<span><a href="" onclick="eliminararchivo(event, '${informacionarchivos[i]._id}')"><i class="fas fa-trash-alt" style=" color:red"></i></a></span> </span> 
+                    <span style=" color:rgb(212, 188, 77)"><i class="fab fa-css3-alt fa-5x" style="color:cornflowerblue"></i><br><span style="color:black">${informacionarchivos[i].nombre}</span><br><span><a href="" onclick="eliminararchivo(event, '1')"><i class="fas fa-pencil-alt" style="color:Gray"></a></i></span>&nbsp|&nbsp<span><a href="" onclick="eliminararchivo(event, '${informacionarchivos[i]._id}')"><i class="fas fa-trash-alt" style=" color:red"></i></a></span> </span> 
                     </div>
                     
                                       
@@ -115,6 +115,7 @@ $("#btn-guardar-archivo").click(function(){
                     
                                       
             </div>`);
+            cargararchivoarchivo();
         },
         error:function(error){
             console.log(error);
@@ -126,7 +127,7 @@ $("#btn-guardar-archivo").click(function(){
 
 
 //------------------Para cargar archivo nuevo-------------------
-$("#cargararchivo").click(function (){
+function cargararchivoarchivo(){
     var parametros2 = "archi="+$("#valor-archivo").val();
     console.log(parametros2);
     $.ajax({
@@ -146,4 +147,4 @@ $("#cargararchivo").click(function (){
         }
     });location.reload();
      
-});
+};

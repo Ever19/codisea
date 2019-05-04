@@ -8,6 +8,7 @@ var categoriasRouter = require('./routers/categorias-router');
 var archivosRouter = require('./routers/archivos-router');
 var usuariosRouter = require('./routers/usuarios-router');
 var usuario = require("./models/usuario");
+var carpeta = require("./models/carpeta");
 var app = express();
 
 app.use(bodyParser.json());
@@ -184,26 +185,45 @@ function verificarAutenticacion(req, res, next){
 		res.send("ERROR, ACCESO NO AUTORIZADO");
 }
 
+//////////////////////////////PARA EDITAR CARPETA/////////////////////////
 
+//------------------Obtener los listados de todas las carpetas------------------
+app.get("/carpetaeditar/",function(req,res){
+    carpeta.find()
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
-/* //------------DELETE para elimnar carpeta en usuario ACTIVA-----------
-app.delete("/obtener-session-codigo/:id",function(req, res){
-    usuario.update(
+//------------------Obtener una carpeta en particular---------------------------
+app.get("/carpetaeditar/:id",function(req,res){
+    carpeta.find({_id:req.params.id})
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//--------------Editar nombre de carpeta de Usuario ACTIVA-----------
+app.put("/carpetaeditar/:id", function(req, res){
+    carpeta.update(
         {_id:req.params.id},
-        {
-            $pop:{
-                carpetass:
-                    
-                    mongoose.Types.ObjectId(req.params.carpe),
-                
-                }}).then(result=>{
+        {              
+             $set:{                 
+                nombre:req.body.nombre
+             }}).then(result=>{
         res.send(result);
     })
     .catch(error=>{
         res.send(error);
     });
 });
- */
+
 
 
 ///////////////////////////////////////////////////////////////////
