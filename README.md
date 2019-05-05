@@ -17,8 +17,8 @@ Instrucciones: Descargar repositorio "codisea"
 -categorias
 -planes
 
-6.Copiar los scripsts de un archivo "informacion.js" de los 4 colecciones insertMany
+5.Copiar los scripsts de un archivo "informacion.js" de los 4 colecciones insertMany
 
-5. ejecutar nodemon index.js
+6. ejecutar nodemon index.js
 
-6. Disfrutar la CodiSeña.
+7. Disfrutar la CodiSeña.
