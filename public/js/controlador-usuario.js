@@ -98,7 +98,7 @@ $.ajax({
 	dataType:"json",
 	success:function(respuesta){
          for (var i=0;i<respuesta.length;i++){
-            $("#usuario").append(`<option value="${respuesta[i]._id}">${respuesta[i].nombre}</option>`);
+            $("#usuario").append(`<option value="${respuesta[i]._id}">${respuesta[i].usuario}</option>`);
             $("#usuario").val(null);
          }
 		},

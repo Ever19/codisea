@@ -22,16 +22,3 @@ class Database{
 
 module.exports = new Database();
 
-
-
-/*
-
-()=>{}
-Es equivalente a:
-function(){}
-
-
-error=>{}
-Es equivalente a:
-function(error){}
-*/
