@@ -18,6 +18,17 @@ function obtenerCarpeta(informacion){
 
 
 
+ //------------------No Obtener carpeta del usuario ACTIVA---------------------
+function noObtenerCarpeta(){
+    document.getElementById('carpetas').innerHTML = '';
+    document.getElementById('archivos').innerHTML = '';
+    document.getElementById("botonnuevacarpeta").style.enabled = false;
+    
+   
+}
+
+
+
 //--------------Cargar el DOM----------------
 
 $(document).ready(function(){
@@ -42,15 +53,37 @@ $.ajax({
         $("#formulario-nabvar").append(`<a href="editarPerfil.html"> <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
         id="btn_editarperfil">${respuesta[0].nombre}</button></a>`);
 
+        $("#formulario-nabvar").append(`<a href="#"> <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
+        id="btn_editarperfil">${respuesta[0].tipoUsuario.plan}</button></a>`);
+
         $("#prueba").append(
 			`<input class="form-control" type="hidden" placeholder="Usuario" value="${respuesta[0]._id}" id="valor-usuario">`
         ); 
+
+        $("#prueba7").append(
+            `<input class="form-control" type="hidden" placeholder="Usuario" value="${respuesta[0]._id}" id="valor-usuarioPlan">`
+        );
         console.log("Usuario seleccionado: " + $("#valor-usuario").val());
 
+        //console.log(respuesta[0].tipoUsuario.plan.length);
 
-        obtenerCarpeta(respuesta);  
+        if(respuesta[0].tipoUsuario.plan=="Sordos/Hipoacusias"){
+            obtenerCarpeta(respuesta);
+        }
+
+        if(respuesta[0].tipoUsuario.plan=="Plan-1(No incluye carpetas y archivos)"){
+            noObtenerCarpeta();
+        }
+
+        if(respuesta[0].tipoUsuario.plan=="Plan-2(Incluye carpetas y archivos)"){
+            obtenerCarpeta(respuesta);
+        }
+          
+          
+            
         
-       
+        
+
 		},
 	error:function(error){
 		console.error(error);
@@ -128,3 +161,25 @@ $("#btn-editar-carpeta").click(function (){
      
 });
  
+//------------------Para Actualizar plan de usuario-------------------
+$("#btn-guardar-plan").click(function (){
+    var parametros5 =$("#formularioplan").serialize()+"&plan="+$("#codigoplan option:selected").text();;
+    console.log(parametros5);
+  
+    $.ajax({
+        url:`/obtener-session-codigo-plan/${$("#valor-usuarioPlan").val()}`,
+        method:"put",
+        data: parametros5,  
+        dataType: "json",
+        success:function(res){
+            console.log(res);
+            $("#modalActualizarPlan").modal("hide");
+
+        },
+            error:function(error){
+            console.log(error);
+            $("#modalActualizarPlan").modal("hide");
+       }
+    });location.reload();
+     
+});

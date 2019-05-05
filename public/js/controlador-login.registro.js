@@ -24,7 +24,7 @@ $("#btn_sesion").click(function(){
 
 //-----------------Guardar nuevo usuario o registra nuevo----------
 $("#btn_registrar").click(function(){
-    var parametros3 = $("#formulario-registro").serialize();
+    var parametros3 = $("#formulario-registro").serialize() + "&plan="+$("#tipoUsuario option:selected").text();;
     console.log("Información a guardar usuario: " + parametros3);
     $.ajax({
         url:"/usuarios",

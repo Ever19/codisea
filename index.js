@@ -7,6 +7,7 @@ var carpetasRouter = require('./routers/carpetas-router');
 var categoriasRouter = require('./routers/categorias-router');
 var archivosRouter = require('./routers/archivos-router');
 var usuariosRouter = require('./routers/usuarios-router');
+var planesRouter = require('./routers/planes-router');
 var usuario = require("./models/usuario");
 var carpeta = require("./models/carpeta");
 var app = express();
@@ -17,38 +18,14 @@ app.use("/carpetas",carpetasRouter);
 app.use("/categorias",categoriasRouter);
 app.use("/archivos",archivosRouter);
 app.use("/usuarios",usuariosRouter);
+app.use("/planes",planesRouter);
 app.use(express.static("public"));
 app.use(session({secret:"ASDFE$%#%",resave:true, saveUninitialized:true}));
 
 
-//-----------------POST para Login----------------
-app.post("/login",function(req, res){
-
-    usuario.find({usuario:req.body.usuario, contrasena:req.body.contrasena})
-    .then(data=>{
-        if (data.length==1){
-            req.session.codigoUsuario = data[0]._id;
-            req.session.correoUsuario =  data[0].correo;
-            req.session.codigoTipoUsuario = data[0].tipoUsuario;
-            res.send({status:1,mensaje:"Usuario autenticado con éxito", usuario:data[0]});
-        }else{
-            res.send({status:0,mensaje:"Usuario o Contraseña incorrectas"});        
-            
-        }
-        
-    })
-    .catch(error=>{
-        res.send(error);
-    }); 
-});
 
 
-//------------Para salir sesion-----------
-app.get('/logout',function(req,res){
-    req.session.destroy();
-    res.redirect("/");
-});
-
+//////////////////////////////PARA OBTENER DEL USUARIO ACTIVA/////////////////////////
 
 //-----------Obtener los usuarios----------
 app.get("/obtener-session-codigo",function(req,res){
@@ -60,15 +37,6 @@ app.get("/obtener-session-codigo",function(req,res){
     });
 }); 
 
-//-----------Obtener los usuarios para perfil----------
-app.get("/obtener-session-codigo-perfil",function(req,res){
-    usuario.find({_id:req.session.codigoUsuario}).then(data=>{
-        res.send(data);
-    })
-    .catch(error=>{
-        res.send(error);
-    });
-}); 
 
 
 //------------Obtener USUARIO ACTIVA------------
@@ -81,19 +49,6 @@ app.get("/obtener-session-codigo/:id",function(req,res){
         res.send(error);
     });
 });
-
-
-//------------Obtener USUARIO ACTIVA para perfil------------
-app.get("/obtener-session-codigo-perfil/:id",function(req,res){
-    usuario.find({_id:req.params.id})
-    .then(data=>{
-        res.send(data);
-    })
-    .catch(error=>{
-        res.send(error);
-    });
-});
-
 
 
 
@@ -124,9 +79,6 @@ app.get("/obtener-session-codigo/:id/carpetass",function(req,res){
 });
 
 
-
-
-
 //--------------Agregar nueva carpeta del Usuario ACTIVA-----------
 app.put("/obtener-session-codigo/:id", function(req, res){
     usuario.update(
@@ -139,6 +91,35 @@ app.put("/obtener-session-codigo/:id", function(req, res){
                 
                 }}).then(result=>{
         res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////PARA ACTUALIZAR PERFIL DEL USUARIO ACTIVA/////////////////////////
+
+
+//-----------Obtener los usuarios para perfil----------
+app.get("/obtener-session-codigo-perfil",function(req,res){
+    usuario.find({_id:req.session.codigoUsuario}).then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+}); 
+
+
+//------------Obtener USUARIO ACTIVA para perfil------------
+app.get("/obtener-session-codigo-perfil/:id",function(req,res){
+    usuario.find({_id:req.params.id})
+    .then(data=>{
+        res.send(data);
     })
     .catch(error=>{
         res.send(error);
@@ -169,23 +150,60 @@ app.put("/obtener-session-codigo-perfil/:id", function(req, res){
     });
 });
 
-    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
 
-//-----------peticion restringida, se envia una funcion midleware-----------
-app.get("/peticion-registringido",verificarAutenticacion,function(req, res){
-    res.send("Este es un contenido restringido");
-    res.end();
+
+//////////////////////////////PARA MODIFICAR DE PLAN DE SUSCRIPCION DEL USUARIO ACTIVA/////////////////////////
+
+
+//-----------Obtener los usuarios para perfil----------
+app.get("/obtener-session-codigo-plan",function(req,res){
+    usuario.find({_id:req.session.codigoUsuario}).then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+}); 
+
+
+//------------Obtener USUARIO ACTIVA para perfil------------
+app.get("/obtener-session-codigo-plan/:id",function(req,res){
+    usuario.find({_id:req.params.id})
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
 });
 
-//-------------Para agregar seguridad a una ruta especifica-----------------
-function verificarAutenticacion(req, res, next){
-	if(req.session.correoUsuario)
-		return next();
-	else
-		res.send("ERROR, ACCESO NO AUTORIZADO");
-}
 
-//////////////////////////////PARA EDITAR CARPETA/////////////////////////
+//--------------Actualizar del perfil de Usuario ACTIVA-----------
+app.put("/obtener-session-codigo-plan/:id", function(req, res){
+    usuario.update(
+        {_id:req.params.id},
+        {              
+             $set:{                     
+                
+            tipoUsuario:{
+                _id:mongoose.Types.ObjectId(req.body.codigoplan),
+                plan:req.body.plan
+               
+                
+                }}}).then(result=>{
+        res.send(result);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+
+
+
+//////////////////////////////PARA EDITAR CARPETA/////////////////////////////////////////////
 
 //------------------Obtener los listados de todas las carpetas------------------
 app.get("/carpetaeditar/",function(req,res){
@@ -223,6 +241,55 @@ app.put("/carpetaeditar/:id", function(req, res){
         res.send(error);
     });
 });
+////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////PARA LOGIN/////////////////////////////////
+
+//-----------------POST para Login----------------
+app.post("/login",function(req, res){
+
+    usuario.find({usuario:req.body.usuario, contrasena:req.body.contrasena})
+    .then(data=>{
+        if (data.length==1){
+            req.session.codigoUsuario = data[0]._id;
+            req.session.correoUsuario =  data[0].correo;
+            req.session.codigoTipoUsuario = data[0].tipoUsuario;
+            res.send({status:1,mensaje:"Usuario autenticado con éxito", usuario:data[0]});
+        }else{
+            res.send({status:0,mensaje:"Usuario o Contraseña incorrectas"});        
+            
+        }
+        
+    })
+    .catch(error=>{
+        res.send(error);
+    }); 
+});
+
+
+//------------Para salir sesion-----------
+app.get('/logout',function(req,res){
+    req.session.destroy();
+    res.redirect("/");
+});
+
+
+//-----------peticion restringida, se envia una funcion midleware-----------
+app.get("/peticion-registringido",verificarAutenticacion,function(req, res){
+    res.send("Este es un contenido restringido");
+    res.end();
+});
+
+//-------------Para agregar seguridad a una ruta especifica-----------------
+function verificarAutenticacion(req, res, next){
+	if(req.session.correoUsuario)
+		return next();
+	else
+		res.send("ERROR, ACCESO NO AUTORIZADO");
+}
+///////////////////////////////////////////////////////////////////////////
 
 
 

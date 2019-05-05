@@ -107,7 +107,7 @@ $(document).ready(function(){
         success:function(res){
             console.log("Respuesta de Carpetas");
             console.log(res);
-            obtenerCarpetas(res);
+            //obtenerCarpetas(res);
             
         },
         error:function(error){

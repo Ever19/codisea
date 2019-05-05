@@ -36,7 +36,9 @@ router.post("/", function(req, res){
             usuario: req.body.usuario,
             correo: req.body.correo,
             contrasena: req.body.contrasena,
-            tipoUsuario: req.body.tipoUsuario            
+            tipoUsuario: {_id:mongoose.Types.ObjectId(req.body.tipoUsuario),
+                            plan: req.body.plan  
+               }
            
     });
 
@@ -46,7 +48,7 @@ router.post("/", function(req, res){
         usuario: req.body.usuario,
         correo: req.body.correo,
         contrasena: req.body.contrasena,
-        tipoUsuario: req.body.tipoUsuario
+        tipoUsuario: mongoose.Types.ObjectId(req.body.tipoUsuario)
         
 }));
 

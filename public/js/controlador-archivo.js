@@ -42,7 +42,7 @@ $(document).ready(function(){
                     `
                 );
             }
-            obtenerArchivos();
+            //obtenerArchivos();
         },
         error:function(error){
             console.log(error);

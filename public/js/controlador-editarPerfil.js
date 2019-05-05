@@ -16,6 +16,7 @@ $(document).ready(function(){
         $("#prueba5").append(
             `<input class="form-control" type="hidden" placeholder="Usuario" value="${respuesta[0]._id}" id="valor-usuarioPerfil">`
         );
+        
        
 
         $("#formularioperfil").append(`<input type="text" class="form-control mt-3" value="${respuesta[0].nombre}" name="nombre" id="nombre" placeholder="Nombre" DISABLED>

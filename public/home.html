@@ -41,7 +41,6 @@
                     id="btn_nabvar" data-toggle="modal"  data-target="#modalAgregarCarpeta">Crear Carpeta</button>
                      -->
                      
-                    <div id="botonperfil"></div>
                     <!-- <a href="editarPerfil.html"> <button class="btn btn-outline-primary my-2 my-sm-0" type="button" style="border-radius: 1.55rem;" 
                       id="btn_editarperfil">Perfil</button></a> -->
                                           
@@ -74,9 +73,9 @@
                           Inicio
                         </a>
                       </li>
-                    <li class="nav-item">
+                    <li id="botonnuevacarpeta" class="nav-item" >
                         <a class="nav-link" href="#" data-toggle="modal"  data-target="#modalAgregarCarpeta">
-                          <span><i class="far fa-folder"></i></span>
+                          <span><i class="far fa-folder" ></i></span>
                           Nueva Carpeta
                         </a>
                       </li>
@@ -103,7 +102,7 @@
                   <ul class="nav flex-column mb-2">
                     <li class="nav-item">
                         <div style="margin-left: 15px" class="form-group">
-                            <input class="btn btn-success" type="button" onclick="location.href='#'" value="Suscribete a un plan">
+                            <button class="btn btn-success" type="button" style="border-radius: 1.55rem;" id="btn_nabvar" data-toggle="modal"  data-target="#modalActualizarPlan">Suscribir a un plan</button>
                          </div>
                     </li>
                   </ul>
@@ -111,7 +110,7 @@
               </nav>
               
               <main style="margin-top:50px" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                    <h3>Carpetas</h3><br>
+                <h3>Carpetas</h3><br>
                     <div class="container">
                         <div class="col-12 row" style=" color:rgb(212, 188, 77)" id="carpetas"  >
                     </div>
@@ -128,6 +127,7 @@
                 <div id="prueba3"></div>
                 <div id="prueba4"></div>
                 <div id="prueba6"></div>
+                <div id="prueba7"></div>
                 
                   
                 <!-- <div class="row" id="categorias"></div> -->
@@ -245,6 +245,34 @@
               </div>
             </div>
           </div>
+
+
+
+                  <!-- Modal suscribir plan al usuario-->
+                  <div class="modal fade" id="modalActualizarPlan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="modalActualizarPlanLabel">Suscripción</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form id="formularioplan">
+                              <h6>Plan de Suscripción</h6>
+                              <select  class="custom-select" name="codigoplan" id="codigoplan">
+                            </select>
+                              
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success" id="btn-guardar-plan">Guardar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
    
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -252,6 +280,7 @@
     <script src="js/controlador-archivo.js"></script>
     <script src="js/controlador-usuario.js"></script>
     <script src="js/controlador-compartir.js"></script>
-    <script src="js/controlador-editarPerfil.js"></script>
+    <script src="js/controlador-editarPerfil.js"></script> 
+    <script src="js/controlador-plan.js"></script>
 </body>
 </html>

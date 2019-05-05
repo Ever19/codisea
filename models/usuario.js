@@ -7,7 +7,7 @@ var esquema = new mongoose.Schema(
         usuario : String,
         contrasena:String,
         correo:String,
-        tipoUsuario:String,
+        tipoUsuario:mongoose.Schema.Types.Mixed,
         carpetass: mongoose.Schema.Types.Mixed
     }
 );
